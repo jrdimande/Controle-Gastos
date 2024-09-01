@@ -14,6 +14,7 @@ class Gerenciamneto:
         elif tipo == "agua" :
             self.agua = valor
 
+
     def calcular_total_despesas(self):
         return self.luz + self.internet + self.agua
 
@@ -22,27 +23,40 @@ class Gerenciamneto:
         return self.salario - total_despesas
 
     def mostrar_relatorio(self):
-        print(f"Salário: {self.salario:.2f}MT")
-        print(f"Despesa com Luz: {self.luz:.2f}")
+        print(f"Salário: {self.salario:.2f} MT")
+        print(f"Despesa com Luz: {self.luz:.2f}MT")
         print(f"Despesa com Internet: {self.internet: .2f}")
-        print(f"Despesa com Água: {self.agua: .2f}")
-        print(f"Saldo Restante: {self.calcular_saldo_restante()}")
+        print(f"Despesa com Água: {self.agua: .2f} MT")
+        print(f"Saldo Restante: {self.calcular_saldo_restante()} MT")
 
+flag = True
 
-while True:
+while flag:
     print('Bem-vindo')
-    salario = int(input("Introduzir Sálario: "))
+    salario = float(input("Introduzir Sálario: "))
     usuario = Gerenciamneto(salario)
 
     message = input("Adicionar dispesa [y/n]: ")
-
     if message == 'y':
-        tipo = input("Tipo: ")
-        valor = float(input("Valor: "))
-        usuario.gerenciar_dispesa(tipo, valor)
+
+        while flag:
+            if message == 'y':
+                tipo = input("Tipo: ")
+                valor = float(input("Valor: "))
+
+                usuario.gerenciar_dispesa(tipo, valor)
+                usuario.calcular_total_despesas()
+                usuario.calcular_saldo_restante()
+
+                message = input("Pretende Adicionar Mais Despesas? [y/n]: ")
+                if message == 'y':
+                    flag = True
+                else:
+                    usuario.mostrar_relatorio()
+                    flag = False
     else:
-        if usuario.mostrar_relatorio():
-            usuario.mostrar_relatorio()
+        flag = True
+
 
 
 
