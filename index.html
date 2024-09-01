@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+<div class="container">
+        <h1>Gerenciamento de Contas</h1>
+        <form id="expenseForm">
+            <div class="form-group">
+                <label for="salario">Salário:</label>
+                <input type="number" id="salario" name="salario" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="luz">Despesa com Luz:</label>
+                <input type="number" id="luz" name="luz" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="internet">Despesa com Internet:</label>
+                <input type="number" id="internet" name="internet" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="agua">Despesa com Água:</label>
+                <input type="number" id="agua" name="agua" step="0.01" required>
+            </div>
+            <button type="button" onclick="calcular()">Calcular</button>
+        </form>
+        <div id="resultado" class="result"></div>
+    </div>
+
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>
