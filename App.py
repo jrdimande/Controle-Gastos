@@ -27,35 +27,50 @@ class Gerenciamneto:
         print(f"Despesa com Luz: {self.luz:.2f}MT")
         print(f"Despesa com Internet: {self.internet: .2f}")
         print(f"Despesa com Água: {self.agua: .2f} MT")
-        print(f"Saldo Restante: {self.calcular_saldo_restante()} MT")
 
-flag = True
+        # Verificar Dívida
+        if self.calcular_saldo_restante() > 0:
+            print(f"Saldo Restante: {self.calcular_saldo_restante()} MT")
+        else:
+            print(f"Tem uma dívida : {self.calcular_saldo_restante() * -1} MT")
 
-while flag:
-    print('Bem-vindo')
-    salario = float(input("Introduzir Sálario: "))
-    usuario = Gerenciamneto(salario)
 
-    message = input("Adicionar dispesa [y/n]: ")
-    if message == 'y':
+# Loop Principal
+def App_run():
+    flag = True
 
-        while flag:
-            if message == 'y':
-                tipo = input("Tipo: ")
-                valor = float(input("Valor: "))
+    while flag:
+        print('Bem-vindo')
+        salario = float(input("Introduzir Sálario: "))
 
-                usuario.gerenciar_dispesa(tipo, valor)
-                usuario.calcular_total_despesas()
-                usuario.calcular_saldo_restante()
+        # Verificar se o salário é válido
+        while salario < 0:
+            salario = int(input("Salário Invalid, Introduz Um Salário Válido: "))
 
-                message = input("Pretende Adicionar Mais Despesas? [y/n]: ")
+        usuario = Gerenciamneto(salario)
+
+        message = input("Adicionar dispesa [y/n]: ")
+        if message == 'y':
+
+            while flag:
                 if message == 'y':
-                    flag = True
-                else:
-                    usuario.mostrar_relatorio()
-                    flag = False
-    else:
-        flag = True
+                    tipo = input("Tipo: ")
+                    valor = float(input("Valor: "))
+
+                    usuario.gerenciar_dispesa(tipo, valor)
+                    usuario.calcular_total_despesas()
+                    usuario.calcular_saldo_restante()
+
+                    message = input("Pretende Adicionar Mais Despesas? [y/n]: ")
+                    if message == 'y':
+                        flag = True
+                    else:
+                        usuario.mostrar_relatorio()
+                        flag = False
+        else:
+            flag = True
+
+App_run()
 
 
 
