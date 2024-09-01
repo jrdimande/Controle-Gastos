@@ -1,32 +1,26 @@
 class Gerenciamneto:
     def __init__(self, salario):
         self.salario = salario
-        self.luz = 0.0
-        self.internet = 0.0
-        self.agua = 0.0
+        self.dispesas = {}
 
     def gerenciar_dispesa(self, tipo, valor):
-        if tipo == "luz":
-            self.luz = valor
+        self.dispesas[tipo] = valor
 
-        elif tipo == "internet":
-            self.internet = valor
-        elif tipo == "agua" :
-            self.agua = valor
+
 
 
     def calcular_total_despesas(self):
-        return self.luz + self.internet + self.agua
+        return sum(self.dispesas.values())
 
     def calcular_saldo_restante(self):
         total_despesas = self.calcular_total_despesas()
         return self.salario - total_despesas
 
     def mostrar_relatorio(self):
-        print(f"Salário: {self.salario:.2f} MT")
-        print(f"Despesa com Luz: {self.luz:.2f}MT")
-        print(f"Despesa com Internet: {self.internet: .2f}")
-        print(f"Despesa com Água: {self.agua: .2f} MT")
+        print(f"Salário: {self.salario: .2f} MT")
+
+        for tipo, valor in self.dispesas.items():
+            print(f"Dispesa com {tipo.capitalize()}: {valor: .2f} Mt")
 
         # Verificar Dívida
         if self.calcular_saldo_restante() > 0:
